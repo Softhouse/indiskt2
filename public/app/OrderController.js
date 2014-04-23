@@ -1,4 +1,6 @@
-app.controller('OrderController', function ($scope, Dish, Order) {
+app.controller('OrderController', function ($scope, Dish, $firebase, CurrentOrders) {
+
+    var orders = CurrentOrders;
 
     $scope.drinks = {
         "naturell": "Mineralvatten Naturell",
@@ -11,14 +13,16 @@ app.controller('OrderController', function ($scope, Dish, Order) {
 
     $scope.dishes = Dish.query();
 
-    $scope.order = new Order();
+    $scope.order = {};
 
     $scope.isOrderOk = function (order) {
         return order.email && order.dish && order.spiciness && order.drink;
     };
 
     $scope.submit = function (order) {
-        order.$save();
+        orders.$add(order).then(function(){
+            debugger;
+        });
     };
 
 });
