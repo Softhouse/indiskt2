@@ -1,0 +1,141 @@
+/* line 7, sass/main.scss */
+body {
+  background-color: rgba(203, 203, 203, 0.8);
+}
+
+/* line 10, sass/main.scss */
+.main {
+  background-color: rgba(152, 152, 152, 0.8);
+}
+/* line 12, sass/main.scss */
+.main form {
+  margin: 20px;
+}
+@media screen and (min-width: 768px) {
+  /* line 10, sass/main.scss */
+  .main {
+    margin-top: 20px;
+  }
+}
+
+/* line 20, sass/main.scss */
+.logo-div {
+  background-image: url("../img/sh.png");
+  width: 320px;
+  height: 205px;
+  position: absolute;
+  background-repeat: no-repeat;
+  left: -20px;
+  top: 0px;
+  background-position: 0,0;
+  z-index: -1;
+}
+
+/* line 31, sass/main.scss */
+.top-buffer {
+  margin-top: 20px;
+}
+
+/* line 34, sass/main.scss */
+.bottom-buffer {
+  margin-bottom: 20px;
+}
+
+/* line 37, sass/main.scss */
+.manager {
+  background-image: url("../img/manager.png");
+  background-repeat: no-repeat;
+  width: 250px;
+  height: 250px;
+  background-size: cover;
+  position: fixed;
+  bottom: -250px;
+}
+
+/* line 47, sass/main.scss */
+.manager-animation {
+  -webkit-animation: managerPopup 20s infinite;
+  -moz-animation: managerPopup 20s infinite;
+  -o-animation: managerPopup 20s infinite;
+}
+
+@-webkit-keyframes managerPopup {
+  /* line 55, sass/main.scss */
+  0% {
+    bottom: -250px;
+  }
+
+  /* line 58, sass/main.scss */
+  40% {
+    bottom: -250px;
+  }
+
+  /* line 61, sass/main.scss */
+  50% {
+    bottom: 0px;
+  }
+
+  /* line 64, sass/main.scss */
+  60% {
+    bottom: -250px;
+  }
+
+  /* line 67, sass/main.scss */
+  100% {
+    bottom: -250px;
+  }
+}
+
+@-moz-keyframes managerPopup {
+  /* line 72, sass/main.scss */
+  0% {
+    bottom: -250px;
+  }
+
+  /* line 75, sass/main.scss */
+  40% {
+    bottom: -250px;
+  }
+
+  /* line 78, sass/main.scss */
+  50% {
+    bottom: 0px;
+  }
+
+  /* line 81, sass/main.scss */
+  60% {
+    bottom: -250px;
+  }
+
+  /* line 84, sass/main.scss */
+  100% {
+    bottom: -250px;
+  }
+}
+
+@-o-keyframes managerPopup {
+  /* line 89, sass/main.scss */
+  0% {
+    bottom: -250px;
+  }
+
+  /* line 92, sass/main.scss */
+  40% {
+    bottom: -250px;
+  }
+
+  /* line 95, sass/main.scss */
+  50% {
+    bottom: 0px;
+  }
+
+  /* line 98, sass/main.scss */
+  60% {
+    bottom: -250px;
+  }
+
+  /* line 101, sass/main.scss */
+  100% {
+    bottom: -250px;
+  }
+}
