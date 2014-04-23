@@ -12,11 +12,11 @@
 </div>
 
 <hr class="visible-xs">
-<div class="row" ng-repeat-start="orderType in orderTypes">
+<div class="row" ng-repeat-start="orderType in orderTypes | orderBy:'count'">
     <div class="col-sm-1">{{orderType.count}}</div>
     <div class="col-sm-3">{{orderType.dish}}</div>
     <div class="col-sm-3">{{orderType.spiciness}}</div>
-    <div class="col-sm-3"><input type="checkbox" ng-model="orderType.rice" disabled></div>
+    <div class="col-sm-3"><i class="fa" ng-class="{'fa-check':orderType.rice}"></i></div>
 </div>
 <hr class="visible-xs" ng-repeat-end>
 <div class="row">
@@ -40,11 +40,11 @@
     <div class="col-sm-1 hidden-xs"><b>Dryck</b></div>
     <div class="col-sm-2 hidden-xs"><b>Betalar till</b></div>
 </div>
-<div class="row" ng-repeat-start="order in orders" ng-cloak>
+<div class="row" ng-repeat-start="order in orders | orderBy:'email'" ng-cloak>
     <div class="col-sm-3"><b class="visible-xs">Person: </b>{{order.email}}</div>
     <div class="col-sm-3"><b class="visible-xs">Maträtt: </b>{{order.dish}}</div>
     <div class="col-sm-1"><b class="visible-xs">Styrka: </b>{{order.spiciness}}</div>
-    <div class="col-sm-1"><b class="visible-xs">Ris: </b><input type="checkbox" ng-model="order.rice" disabled></div>
+    <div class="col-sm-1"><b class="visible-xs">Ris: </b><i class="fa" ng-class="{'fa-check':order.rice}"></i></div>
     <div class="col-sm-1"><b class="visible-xs">Dryck: </b>{{order.drink}}</div>
 </div>
 <hr class="visible-xs" ng-repeat-end>
