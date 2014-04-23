@@ -1,0 +1,72 @@
+<h2 class="col-sm-offset-5">Indiskt</h2>
+<form class="form-horizontal order-form" role="form">
+    <div class="form-group">
+        <label for="uid" class="col-sm-2 control-label">UID/e-postadress</label>
+        <div class="col-sm-8 col-sm-offset-1">
+            <input type="text" id="uid" class="col-sm-10 form-control" placeholder="UID/e-postadress" ng-model="order.email">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="dish" class="col-sm-2 control-label">Maträtt</label>
+        <div class="col-sm-8 col-sm-offset-1">
+            <select class="form-control" id="dish" ng-options="dish.name as dish.name for dish in dishes" ng-model="order.dish">
+                <option value="">&ndash;  Välj maträtt &ndash; </option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="rice" ng-model="order.rice"> Ris?
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-inline form-group">
+        <div class="controls-row">
+            <label class="control-label col-sm-2">Styrka</label>
+            <div class="col-sm-8 col-sm-offset-1">
+                <label class="radio inline">
+                    <input type="radio" value="medium" name="spice"  ng-model="order.spiciness"/>
+                    Medium
+                </label>
+                <label class="radio inline">
+                    <input type="radio" value="hot" name="spice" ng-model="order.spiciness"/>
+                    Stark
+                </label>
+                <label class="radio inline">
+                    <input type="radio" value="xHot" name="spice" ng-model="order.spiciness" />
+                    Extra Stark
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="drink" class="col-sm-2 control-label">Dryck</label>
+        <div class="col-sm-8 col-sm-offset-1">
+            <select class="form-control" id="drink" ng-options="key as value for (key,value) in drinks" ng-model="order.drink">
+                <option value="">&ndash; Välj dryck &ndash;</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success col-sm-offset-5 fa fa-credit-card" ng-disabled="!isOrderOk(order)" ng-click="submit(order)"> Lägg beställning</button>
+</form>
+<section class="infosection col-sm-8 col-sm-offset-3 top-buffer">
+    <p>
+        <b>Höjt pris 2014!</b> Alla rätter kostar <b>65 kr.</b>
+    </p>
+    <p>
+        Beställning ska göras innan klockan 10.15. Om du är sen, bekräfta med David innan du beställer.
+    </p>
+    <p>
+        OBS! Kontantbetalning till David endast mellan klockan 10.00 och 10.15.
+    </p>
+    <p>
+        Betala gärna via <a href="https://www.getswish.se/">Swish</a> genom att skicka pengar till <a href="tel:0768832493">0768-832493</a>
+    </p>
+    <p>
+        Är du med i <a href="http://lists.blekinge.it/listinfo/indiskt">e-postlistan</a> ännu?
+    </p>
+</section>
+<a class="btn btn-primary pull-right bottom-buffer fa fa-list" href="/summary"> Sammanställning</a>

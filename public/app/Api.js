@@ -15,4 +15,14 @@ angular.module('Api', ['ngResource', 'firebase'])
     .factory('CurrentOrders', function ($firebase, MyFirebase, CurrentDate) {
         return $firebase(MyFirebase.child('orders').child(CurrentDate));
     })
+    .factory('Drinks', function () {
+        return {
+            "naturell": "Mineralvatten Naturell",
+            "citrus": "Mineralvatten Citrus",
+            "cola": "Coca-Cola",
+            "cola light": "Coca-Cola Light",
+            "fanta": "Fanta",
+            "sprite": "Sprite"
+        };
+    })
 ;

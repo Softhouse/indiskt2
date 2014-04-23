@@ -1,15 +1,6 @@
-app.controller('OrderController', function ($scope, Dish, $firebase, CurrentOrders) {
+app.controller('OrderController', function ($scope, $location, $firebase, Drinks, Dish, CurrentOrders) {
 
-    var orders = CurrentOrders;
-
-    $scope.drinks = {
-        "naturell": "Mineralvatten Naturell",
-        "citrus": "Mineralvatten Citrus",
-        "cola": "Coca-Cola",
-        "cola light": "Coca-Cola Light",
-        "fanta": "Fanta",
-        "sprite": "Sprite"
-    };
+    $scope.drinks = Drinks;
 
     $scope.dishes = Dish.query();
 
@@ -20,8 +11,9 @@ app.controller('OrderController', function ($scope, Dish, $firebase, CurrentOrde
     };
 
     $scope.submit = function (order) {
-        orders.$add(order).then(function(){
-            debugger;
+        order.rice = order.rice || false;
+        CurrentOrders.$add(order).then(function () {
+            $location.url('/summary');
         });
     };
 

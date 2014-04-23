@@ -20,185 +20,18 @@
 	<title>Indiskt MKII</title>
 </head>
 <body>
-	<div class="logo-div"></div>
-	<div class="container main" ng-controller="OrderController">
-		<h2 class="col-sm-offset-5">Indiskt</h2>
-		<form class="form-horizontal order-form" role="form">
-			<div class="form-group">
-				<label for="uid" class="col-sm-2 control-label">UID/e-postadress</label>
-				<div class="col-sm-8 col-sm-offset-1">
-					<input type="text" id="uid" class="col-sm-10 form-control" placeholder="UID/e-postadress" ng-model="order.email">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="dish" class="col-sm-2 control-label">Maträtt</label>
-				<div class="col-sm-8 col-sm-offset-1">
-					<select class="form-control" id="dish" ng-options="dish.name as dish.name for dish in dishes" ng-model="order.dish">
-                        <option value="">&ndash;  Välj maträtt &ndash; </option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-3 col-sm-10">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" name="rice" ng-model="order.rice"> Ris?
-						</label>
-					</div>
-				</div>
-			</div>
-			<div class="form-inline form-group">
-				<div class="controls-row">
-					<label class="control-label col-sm-2">Styrka</label>
-					<div class="col-sm-8 col-sm-offset-1">
-						<label class="radio inline">
-							<input type="radio" value="medium" name="spice"  ng-model="order.spiciness"/>
-							Medium
-						</label>
-						<label class="radio inline">
-							<input type="radio" value="hot" name="spice" ng-model="order.spiciness"/>
-							Stark
-						</label>
-						<label class="radio inline">
-							<input type="radio" value="xHot" name="spice" ng-model="order.spiciness" />
-							Extra Stark
-						</label>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="drink" class="col-sm-2 control-label">Dryck</label>
-				<div class="col-sm-8 col-sm-offset-1">
-					<select class="form-control" id="drink" ng-options="key as value for (key,value) in drinks" ng-model="order.drink">
-					  <option value="">&ndash; Välj dryck &ndash;</option>
-					</select>
-				</div>
-			</div>
-			<button type="submit" class="btn btn-success col-sm-offset-5 fa fa-credit-card" ng-disabled="!isOrderOk(order)" ng-click="submit(order)"> Lägg beställning</button>
-		</form>
-		<section class="infosection col-sm-8 col-sm-offset-3 top-buffer">
-			<p>
-				<b>Höjt pris 2014!</b> Alla rätter kostar <b>65 kr.</b>
-			</p>
-			<p>
-				Beställning ska göras innan klockan 10.15. Om du är sen, bekräfta med David innan du beställer.
-			</p>
-			<p>
-				OBS! Kontantbetalning till David endast mellan klockan 10.00 och 10.15.
-			</p>
-			<p>
-				Betala gärna via <a href="https://www.getswish.se/">Swish</a> genom att skicka pengar till <a href="tel:0768832493">0768-832493</a>
-			</p>
-			<p>
-				Är du med i <a href="http://lists.blekinge.it/listinfo/indiskt">e-postlistan</a> ännu?
-			</p>
-		</section>
-		<button class="btn btn-primary pull-right bottom-buffer fa fa-list"> Sammanställning</button>
+	<a href="/"><div class="logo-div"></div></a></a>
+	<div class="container main" ng-view>
 	</div>
-	<div class="container main" style="display: none;">
-		<div class="row">
-			<h2 class="col-sm-5">Indiskt 2014-04-22</h2>
-		</div>
-		<div class="row">
-			<div class="col-sm-5">Totalt antal beställningar: 16</div>
-		</div>
-		<div class="row hidden-print">
-			<h2 class="col-sm-5">Personer som hämtar mat</h2>
-		</div>
-		<div class="row hidden-print">
-			<div class="col-sm-3 hidden-xs"><b>Person</b></div>
-			<div class="col-sm-3 hidden-xs"><b>Kontanter</b></div>
-			<div class="col-sm-3 hidden-xs"><b>Antal att betala för</b></div>
-		</div>
-		<!-- NG-REPEAT???-->
-		<div class="row hidden-print">
-			<div class="col-sm-3"><b class="visible-xs">Person: </b>David</div>
-			<div class="col-sm-3"><b class="visible-xs">Kontanter: </b>845</div>
-			<div class="col-sm-3"><b class="visible-xs">Antal att betala för: </b>13</div>
-		</div>
-		<hr class="visible-xs hidden-print">
-		<div class="row hidden-print">
-			<div class="col-sm-3"><b class="visible-xs">Person: </b>ulf.seijsing@softhouse.se</div>
-			<div class="col-sm-3"><b class="visible-xs">Kontanter: </b>65</div>
-			<div class="col-sm-3"><b class="visible-xs">Antal att betala för: </b>1</div>
-		</div>
-		<div class="row">
-			<h2 class="col-sm-5">Matbeställning</h2>
-		</div>
-		<div class="row top-buffer bottom-buffer hidden-print">
-			<div class="col-sm-5">Telefonnummer: <a href="tel:0455311002">0455-311002</a></div>
-		</div>
-		<!-- NG-REPEAT???-->
-		<hr class="visible-xs">
-		<div class="row">
-			<div class="col-sm-1">1</div>
-			<div class="col-sm-3">Butter Chicken</div>
-			<div class="col-sm-3">hot</div>
-			<div class="col-sm-3">Med ris</div>
-		</div>
-		<hr class="visible-xs">
-		<div class="row">
-			<div class="col-sm-1">3</div>
-			<div class="col-sm-3">Kyckling vindaloo</div>
-			<div class="col-sm-3">medium</div>
-			<div class="col-sm-3">Med ris</div>
-		</div>
-		<div class="row">
-			<h2 class="col-sm-5">Dryck</h2>
-		</div>
-		<!-- NG-REPEAT???-->
-		<hr class="visible-xs">
-		<div class="row">
-			<div class="col-sm-1">6</div>
-			<div class="col-sm-3">citrus</div>
-		</div>
-		<hr class="visible-xs">
-		<div class="row">
-			<div class="col-sm-1">3</div>
-			<div class="col-sm-3">cola</div>
-		</div>
-		<div class="row">
-			<h2 class="col-sm-5">Vem beställde vad?</h2>
-		</div>
-		<div class="row">
-			<div class="col-sm-3 hidden-xs"><b>Person</b></div>
-			<div class="col-sm-3 hidden-xs"><b>Maträtt</b></div>
-			<div class="col-sm-1 hidden-xs"><b>Styrka</b></div>
-			<div class="col-sm-1 hidden-xs"><b>Ris</b></div>
-			<div class="col-sm-1 hidden-xs"><b>Dryck</b></div>
-			<div class="col-sm-2 hidden-xs"><b>Betalar till</b></div>
-		</div>
-		<div class="row">
-			<div class="col-sm-3"><b class="visible-xs">Person: </b>ata</div>
-			<div class="col-sm-3"><b class="visible-xs">Maträtt: </b>Kyckling vindaloo</div>
-			<div class="col-sm-1"><b class="visible-xs">Styrka: </b>medium</div>
-			<div class="col-sm-1"><b class="visible-xs">Ris: </b><!-- no check here, no rise for you boy!--></div>
-			<div class="col-sm-1"><b class="visible-xs">Dryck: </b>cola</div>
-			<div class="col-sm-2"><b class="visible-xs">Betalar till: </b>David</div>
-		</div>
-		<hr class="visible-xs">
-		<div class="row">
-			<div class="col-sm-3"><b class="visible-xs">Person: </b>karl på riktigt</div>
-			<div class="col-sm-3"><b class="visible-xs">Maträtt: </b>Gyrostallrik</div>
-			<div class="col-sm-1"><b class="visible-xs">Styrka: </b>hot</div>
-			<div class="col-sm-1"><b class="visible-xs">Ris: </b><i class="fa fa-check"></i></div>
-			<div class="col-sm-1"><b class="visible-xs">Dryck: </b>naturell</div>
-			<div class="col-sm-2"><b class="visible-xs">Betalar till: </b>ulf.seijsing@softhouse.se</div>
-		</div>
-		<hr class="visible-xs">
-		<div class="row top-buffer bottom-buffer">
-			<div class="col-sm-5 text-info">Sidan genererades klockan 20:49:26</div>
-		</div>
-	</div>
-
-	<div class="manager manager-animation"></div>
 
     <script src="components/firebase/firebase.js"></script>
     <script src="components/angular/angular.js"></script>
+    <script src="components/angular-route/angular-route.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="components/angularfire/angularfire.js"></script>
     <script src="app/Api.js"></script>
     <script src="app/App.js"></script>
     <script src="app/OrderController.js"></script>
+    <script src="app/SummaryController.js"></script>
 </body>
 </html>
