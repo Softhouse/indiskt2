@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" xmlns:ng="http://angularjs.org" id="ng-app" ng-app="app"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" xmlns:ng="http://angularjs.org" id="ng-app" ng-app="App"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -17,26 +17,24 @@
 	<link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="styles/main.css">
 
-
 	<title>Indiskt MKII</title>
 </head>
 <body>
 	<div class="logo-div"></div>
-	<div class="container main">
+	<div class="container main" ng-controller="OrderController">
 		<h2 class="col-sm-offset-5">Indiskt</h2>
 		<form class="form-horizontal order-form" role="form">
 			<div class="form-group">
 				<label for="uid" class="col-sm-2 control-label">UID/e-postadress</label>
 				<div class="col-sm-8 col-sm-offset-1">
-					<input type="text" name="uid" class="col-sm-10 form-control" placeholder="UID/e-postadress">
+					<input type="text" id="uid" class="col-sm-10 form-control" placeholder="UID/e-postadress" ng-model="order.email">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="dish" class="col-sm-2 control-label">Maträtt</label>
 				<div class="col-sm-8 col-sm-offset-1">
-					<select class="form-control" name="dish">
-					  <option>Rätt 1</option>
-					  <option>Rätt 2</option>
+					<select class="form-control" id="dish" ng-options="dish.name as dish.name for dish in dishes" ng-model="order.dish">
+                        <option value="">&ndash;  Välj maträtt &ndash; </option>
 					</select>
 				</div>
 			</div>
@@ -44,7 +42,7 @@
 				<div class="col-sm-offset-3 col-sm-10">
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" name="rice"> Ris?
+							<input type="checkbox" name="rice" ng-model="order.rice"> Ris?
 						</label>
 					</div>
 				</div>
@@ -54,15 +52,15 @@
 					<label class="control-label col-sm-2">Styrka</label>
 					<div class="col-sm-8 col-sm-offset-1">
 						<label class="radio inline">
-							<input type="radio" value="medium" name="spice"/>
+							<input type="radio" value="medium" name="spice"  ng-model="order.spiciness"/>
 							Medium
 						</label>
 						<label class="radio inline">
-							<input type="radio" value="hot" name="spice"/>
+							<input type="radio" value="hot" name="spice" ng-model="order.spiciness"/>
 							Stark
 						</label>
 						<label class="radio inline">
-							<input type="radio" value="xHot" name="spice" />
+							<input type="radio" value="xHot" name="spice" ng-model="order.spiciness" />
 							Extra Stark
 						</label>
 					</div>
@@ -71,22 +69,12 @@
 			<div class="form-group">
 				<label for="drink" class="col-sm-2 control-label">Dryck</label>
 				<div class="col-sm-8 col-sm-offset-1">
-					<select class="form-control" name="drink">
-					  <option>Dryck 1</option>
-					  <option>Dryck 2</option>
+					<select class="form-control" id="drink" ng-options="key as value for (key,value) in drinks" ng-model="order.drink">
+					  <option value="">&ndash; Välj dryck &ndash;</option>
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="paymentReciever" class="col-sm-2 control-label">Betalar till person</label>
-				<div class="col-sm-8 col-sm-offset-1">
-					<select class="form-control" name="paymentReciever">
-					  <option>paymentReciever 1</option>
-					  <option>paymentReciever 2</option>
-					</select>
-				</div>
-			</div>
-			<button type="submit" class="btn btn-success col-sm-offset-5 fa fa-credit-card"> Lägg beställning</button>
+			<button type="submit" class="btn btn-success col-sm-offset-5 fa fa-credit-card" ng-disabled="!isOrderOk(order)" ng-click="submit(order)"> Lägg beställning</button>
 		</form>
 		<section class="infosection col-sm-8 col-sm-offset-3 top-buffer">
 			<p>
@@ -204,5 +192,11 @@
 	</div>
 
 	<div class="manager manager-animation"></div>
+
+    <script src="components/angular/angular.js"></script>
+    <script src="components/angular-resource/angular-resource.js"></script>
+    <script src="app/Api.js"></script>
+    <script src="app/App.js"></script>
+    <script src="app/OrderController.js"></script>
 </body>
 </html>
